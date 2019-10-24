@@ -1,7 +1,59 @@
 import React, { Component } from 'react'
 
+import axios from 'axios'
+
 export default class Reset extends Component {
 
+
+  constructor(){
+    super();
+
+    this.state = {
+      email: ''
+      
+    }
+    this.Email =this.Email.bind(this);
+    
+    this.handleReset =this.handleReset.bind(this);
+   
+  }
+  Email(event){
+    this.setState({email: event.target.value})
+
+  }
+
+  Password(event){
+    this.setState({password: event.target.value})
+  }
+  Rpassword(event){
+    this.setState({rpassword: event.target.value})
+  }
+
+
+  async handleReset(event) {
+    event.preventDefault()
+    console.log('state',this.state.email)
+
+    let data = {
+      email: this.state.email
+      
+     }
+    
+    console.log("here---->")
+    await axios.post(`http://192.168.1.169:8080/user/forget`, data, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((res) => {
+        console.log(res);
+      })
+
+  }
+  
+  
+  
+  
 
 
 
@@ -18,33 +70,15 @@ export default class Reset extends Component {
     
     
     
-                <label htmlFor="test"><b>Username</b></label>
-                <input type="text" onChange={this.Username} placeholder="username" name="email" required />
+                <label htmlFor="test"><b>Email</b></label>
+                <input type="text" onChange={this.Email} placeholder="username" name="email" required />
     
     
-                <label htmlFor="tel" className="telph"><b>Mobile Number</b></label>
-                <input type="tel" onChange={this.Phone} placeholder="Enter number" name="tel" required />
-    
-               
-               <div className="clearfix">
-                  <label htmlFor="psw"><b>OTP</b></label>
-                  <input type="number" onChange={this.Otp} placeholder="Enter OTP" name="otp" required />
-    
-                  <button type="submit" onClick={this.handleOTP} className="signupbtn">Submit OTP</button>
+                <button type="submit" onClick={this.handleReset} className="signupbtn">Submit </button>
                 </div>
+                <div>
 
-                <label htmlFor="text"><b>Password</b></label>
-                <input type="text" onChange={this.Username} placeholder="enter password" name="email" required />
-    
-    
-                <label htmlFor="text" className="telph"><b>Re-enter Password</b></label>
-                <input type="text" onChange={this.Phone} placeholder="Re-enter password" name="tel" required />
-    
-               
-               <div className="clearfix">
-                  
-                <button type="submit" onSubmit={this.resetHandler} className="signupbtn">Reset</button>
-                </div>
+                
 
 
               </div>

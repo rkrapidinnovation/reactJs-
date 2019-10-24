@@ -58,10 +58,9 @@ class Login extends Component {
                       <input type="password" onChange={this.password} placeholder="Enter Password" name="psw" required/> 
                         
                   <button type="submit" onClick={this.login}>LOG IN</button>
-                  <br/>
-                  <button type="submit" style={{width:"30%",backgroundColor:"#105918"}} onClick={this.reset}>RESET PASSOWORD</button>
+                  
                       
-            </div> 
+                </div> 
 
                   
             </form>

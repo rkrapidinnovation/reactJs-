@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { REGISTER_REQUEST } from './actions/types'
 import { store } from "./index"
+import { connect } from 'react-redux';
 
 //const url = `http://192.168.0.89:8080/user/register`
 
@@ -13,8 +14,7 @@ class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      username: '',
+      name: '',
       password: '',
       email: '',
       phone: '',
@@ -33,7 +33,7 @@ class Signup extends Component {
   }
   Username(event) {
 
-    this.setState({ username: event.target.value })
+    this.setState({ name: event.target.value })
   }
   Password(event) {
     this.setState({ password: event.target.value })
@@ -53,10 +53,10 @@ class Signup extends Component {
     event.preventDefault()
 
     let data = {
-      username: this.state.username,
+      name: this.state.name,
       password: this.state.password,
       email: this.state.email,
-      phone: this.state.phone,
+      phone: this.state.phone
 
 
     }
@@ -65,7 +65,7 @@ class Signup extends Component {
       payload: data
     })
     console.log("here---->")
-    await axios.post(`http://192.168.1.169:1337/user/`, data, {
+    await axios.post(`http://192.168.1.169:8080/user/register`, data, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -77,11 +77,11 @@ class Signup extends Component {
   }
   async handleOTP(event) {
     event.preventDefault()
-    let newotp = { 
+    let newotp = {
       phone: this.state.phone,
       otp: this.state.otp
     }
-    await axios.post(`http://192.168.1.169:1337/user/`, newotp, {
+    await axios.post(`http://192.168.1.169:8080/user/register`, newotp, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -89,7 +89,7 @@ class Signup extends Component {
       console.log(response);
     })
 
-   }
+  }
 
 
 
@@ -106,10 +106,10 @@ class Signup extends Component {
 
 
 
-            <label htmlFor="test"><b>username</b></label>
-            <input type="text" onChange={this.Username} placeholder="username" name="email" required />
+            <label htmlFor="test"><b>name</b></label>
+            <input type="text" onChange={this.Username} placeholder="name" name="email" required />
 
-            <label htmlFor="psw"><b>Password</b></label>
+            <label htmlFor="password"><b>Password</b></label>
             <input type="password" onChange={this.Password} placeholder="Enter Password" name="psw" required />
 
 
@@ -135,7 +135,7 @@ class Signup extends Component {
 
 
       </div>
-  
+
 
 
     );
@@ -143,5 +143,9 @@ class Signup extends Component {
 
 
 }
+function mapState(state) {
+  console.log("store----->", state)
+  return {}
+}
 
-export default Signup;
+export default connect(mapState)(Signup);
