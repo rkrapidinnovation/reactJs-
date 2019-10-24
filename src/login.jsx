@@ -18,12 +18,13 @@ class Login extends Component {
     this.login =this.login.bind(this);
   }
   Email(event){
-    this.setState({Email: event.target.value})
+    this.setState({email: event.target.value})
   }
   Password(event){
-    this.setState({Password: event.target.value})
+    this.setState({password: event.target.value})
   }
-  login(){
+  login(event){
+    event.preventDefault()
     
     let data = {
       email: this.state.email,
@@ -32,14 +33,14 @@ class Login extends Component {
 
     }
     
-    axios.post(`http://192.168.0.89:8080/auth/login`,data,{
+    axios.post(`http://192.168.1.169:8080/user/login`,data,{
       headers: {
         'Content-Type': 'application/json'
       }
   })
     
-    .then((res)=>{console.log(res);
-    }).then((result)=>console.log(result.data))
+    .then((res)=>{console.log('helll---->',res);
+    })
     
   }
   render(){
@@ -48,16 +49,16 @@ class Login extends Component {
 
         <div className="login-box" >
 
-          <form   >
+          <form onSubmit = {this.login}  >
             <div className="container">
                 <h1>Login to Myntra</h1>
                     <label htmlFor="uname"><b>Email</b></label>
-                    <input type="email" onChange ={this.email} placeholder="Enter Username" name="uname" required/> 
+                    <input type="email" onChange ={this.Email} placeholder="Enter Username" name="uname" required/> 
                 <br/>
                       <label htmlFor="psw"><b>Password</b></label>
-                      <input type="password" onChange={this.password} placeholder="Enter Password" name="psw" required/> 
+                      <input type="password" onChange={this.Password} placeholder="Enter Password" name="psw" required/> 
                         
-                  <button type="submit" onClick={this.login}>LOG IN</button>
+                  <button type="submit" >LOG IN</button>
                   
                       
                 </div> 

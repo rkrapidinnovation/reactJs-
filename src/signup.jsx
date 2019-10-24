@@ -100,13 +100,13 @@ class Signup extends Component {
 
 
       <div className="login-box">
-        <form  >
+        <form onSubmit={this.handleSubmit}>
           <div className="container" >
             <h1>Signup with Myntra</h1>
 
 
 
-            <label htmlFor="test"><b>name</b></label>
+            <label htmlFor="test"><b>UserName</b></label>
             <input type="text" onChange={this.Username} placeholder="name" name="email" required />
 
             <label htmlFor="password"><b>Password</b></label>
@@ -121,13 +121,20 @@ class Signup extends Component {
 
             <div className="clearfix">
               <button type="button" className="cancelbtn">Cancel</button>
-              <button type="submit" onClick={this.handleSubmit} className="signupbtn">REGISTER</button>
+              <button type="submit" className="signupbtn">REGISTER</button>
             </div>
-            <div className="clearfix">
-              <label htmlFor="psw"><b>OTP</b></label>
-              <input type="number" onChange={this.Otp} placeholder="Enter OTP" name="otp" required />
 
-              <button type="submit" onClick={this.handleOTP} className="signupbtn">Submit OTP</button>
+          </div>
+        </form>
+        <form onSubmit={this.handleOTP}>
+          <div >
+            <div className="container" >
+              <div className="clearfix">
+                <label htmlFor="psw"><b>OTP</b></label>
+                <input type="number" onChange={this.Otp} placeholder="Enter OTP" name="otp" required />
+
+                <button type="submit" className="signupbtn">Submit OTP</button>
+              </div>
             </div>
           </div>
         </form>

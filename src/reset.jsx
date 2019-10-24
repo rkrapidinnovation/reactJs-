@@ -40,7 +40,7 @@ export default class Reset extends Component {
      }
     
     console.log("here---->")
-    await axios.post(`http://192.168.1.169:8080/user/forget`, data, {
+    await axios.post(`http://192.168.0.89:8080/user/forget`, data, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -64,7 +64,7 @@ export default class Reset extends Component {
     render() {
         return (
             <div className="login-box">
-            <form  >
+            <form onSubmit={this.handleReset} >
               <div className="container" >
                 <h1>Reset Password</h1>
     
@@ -74,7 +74,7 @@ export default class Reset extends Component {
                 <input type="text" onChange={this.Email} placeholder="username" name="email" required />
     
     
-                <button type="submit" onClick={this.handleReset} className="signupbtn">Submit </button>
+                <button type="submit"  className="signupbtn">Submit </button>
                 </div>
                 <div>
 
